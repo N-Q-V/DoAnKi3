@@ -1,0 +1,42 @@
+﻿@using CallApi.Models.Admin
+@{
+    var categories = (List<Category>)ViewBag.Categories;
+}
+<div class="space-medium">
+    <div class="container">
+        <div class="row">
+            @{
+                int displayIndex = 0;
+                foreach (var category in categories)
+                {
+
+                    if (!category.Status)
+                    {
+                        continue;
+                    }
+                    var colClass = displayIndex == 1 ? "col-lg-6 col-md-6 col-sm-12 col-xs-12" : "col-lg-3 col-md-3 col-sm-12 col-xs-12";
+
+                    var showcaseClass = displayIndex == 1 ? "showcase-block active" : "showcase-block";
+
+                    <div class="@colClass">
+                        <div class="@showcaseClass">
+                            <div class="display-logo @(displayIndex == 1 ? "alignleft" : "")">
+                                <a href="/UserProduct?categoryId=@category.CategoryId">
+                                    <img src="@ViewBag.domain@category.Logo" alt="">
+                                </a>
+                            </div>
+                            <div class="showcase-img">
+                                <a href="/UserProduct?categoryId=@category.CategoryId">
+                                    <img src="@ViewBag.domain@category.Image" alt=""
+                                         style="max-width: 200px; max-height: 180px; @(displayIndex == 1 ? "padding-left: 80px;" : "")">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    displayIndex++;
+                }
+            }
+        </div>
+    </div>
+</div>

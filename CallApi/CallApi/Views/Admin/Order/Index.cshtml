@@ -1,0 +1,220 @@
+﻿@using X.PagedList.Mvc.Core
+@model X.PagedList.IPagedList<CallApi.Models.User.Cart>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid mt-4">
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+    <h1 class="mb-4">Quản lý đơn hàng</h1>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <!-- Form Tìm Kiếm và Lọc Danh Mục -->
+        <form method="get" asp-action="Index" class="w-75 d-flex align-items-end">
+            <!-- Tìm kiếm sản phẩm -->
+            <div class="me-2 mr-1 text-center">
+                <label for="searchPhoneNumber" class="form-label">Tìm kiếm</label>
+                <input type="text" id="phone" name="phone" value="@ViewBag.phone" class="form-control" placeholder="Nhập số điện thoại..." />
+            </div>
+
+            <!-- Lọc theo danh mục -->
+            <div class="me-2 mr-1 text-center">
+                <label for="status" class="form-label">Lọc theo trạng thái</label>
+                <select name="status" class="form-control" id="statusSelect">
+                    <option value="">Tất cả</option>
+                    <option value="Đang chuẩn bị hàng">Đang chuẩn bị hàng</option>
+                    <option value="Đang ship">Đang ship</option>
+                    <option value="Đã giao hàng">Đã giao hàng</option>
+                </select>
+            </div>
+
+            <!-- Lọc theo trạng thái -->
+            <div class="me-2 mr-1 text-center">
+                <label for="paymentStatus" class="form-label">Trạng thái thanh toán</label>
+                <select name="paymentStatus" class="form-control" id="paymentStatusSelect">
+                    <option value="">Tất cả</option>
+                    <option value="Đã thanh toán">Đã thanh toán</option>
+                    <option value="Chưa thanh toán">Chưa thanh toán</option>
+                </select>
+            </div>
+
+            <!-- Nút lọc -->
+            <div>
+                <button class="btn btn-primary" type="submit"><i class="fa-solid fa-filter"></i></button>
+            </div>
+        </form>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th class="text-center">Mã người dùng</th>
+                    <th class="text-center">Họ và tên</th>
+                    <th class="text-center">Số điện thoại</th>
+                    <th class="text-center">Email</th>
+                    <th class="text-center">Tổng tiền</th>
+                    <th class="text-center">Thanh toán</th>
+                    <th class="text-center">Địa chỉ giao hàng</th>
+                    <th class="text-center">Ngày đặt hàng</th>
+                    <th class="text-center">Trạng thái đơn hàng</th>
+                    <th class="text-center"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.UserId)</td>
+                        <td>@Html.DisplayFor(modelItem => item.UserName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Phone)</td>
+                        <td>Vietmoc1702@gmail.com</td>
+                        <td>@Html.DisplayFor(modelItem => item.TotalAmount)</td>
+                        <td class="@(item.PaymentStatus == "Đã thanh toán" ? "bg-success text-white" : "bg-danger text-white")">
+                            @Html.DisplayFor(modelItem => item.PaymentStatus)
+                        </td>
+
+
+                        <td>@Html.DisplayFor(modelItem => item.ShippingAddress)</td>
+                        <td>@Html.DisplayFor(modelItem => item.OrderDate)</td>
+                        <td class="@(item.Status == "Đang chuẩn bị hàng" ? "bg-warning text-white":item.Status == "Đã giao hàng" ? "bg-success text-white":"bg-primary text-white")">
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                        <td>
+                            <a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editModal"
+                               data-orderId="@item.OrderId"
+                               data-userId="@item.UserId"
+                               data-username="@item.UserName"
+                               data-phone="@item.Phone"
+                               data-email="@item.Email"
+                               data-address="@item.ShippingAddress"
+                               data-amount="@item.TotalAmount"
+                               data-paymentstatus="@item.PaymentStatus"
+                               data-status="@item.Status"
+                               data-orderDate="@item.OrderDate">Sửa</a>
+                            <a asp-action="Detail" asp-route-id="@item.OrderId" class="btn btn-sm btn-info">Chi tiết</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="form-inline">
+            @Html.PagedListPager(
+                     Model,
+                     page => Url.Action("Index", "Order", new { page = page}),
+                     new PagedListRenderOptions
+            {
+                LiElementClasses = new[] { "page-item" },
+                PageClasses = new[] { "page-link" },
+                UlElementClasses = new[] { "pagination" },
+                LinkToPreviousPageFormat = "Previous",
+                LinkToNextPageFormat = "Next",
+                DisplayLinkToPreviousPage = PagedListDisplayMode.IfNeeded,
+                DisplayLinkToNextPage = PagedListDisplayMode.IfNeeded,
+                DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+                DisplayLinkToLastPage = PagedListDisplayMode.Never
+            }
+                     )
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Cập nhật đơn hàng</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editForm" asp-action="Edit" asp-controller="Order" asp-route-id="1" method="post">
+                    <input type="hidden" id="orderId" name="OrderId" />
+                    <input type="hidden" id="userId" name="UserId" />
+                    <input type="hidden" class="form-control" id="phone" name="Phone"/>
+                    <input type="hidden" class="form-control" id="email" name="Email"/>
+                    <input type="hidden" class="form-control" id="totalAmount" name="TotalAmount" />
+                    <input type="hidden" class="form-control" id="orderDate" name="OrderDate" />
+                    <div class="mb-3">
+                        <label for="userName" class="form-label">Tên khách hàng</label>
+                        <input type="text" class="form-control" id="userName" name="UserName" readonly />
+                    </div>
+                    <div class="mb-3">
+                        <label for="shippingAddress" class="form-label">Địa chỉ giao hàng</label>
+                        <input type="text" class="form-control" id="shippingAddress" name="ShippingAddress" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="paymentStatus" class="form-label">Trạng thái thanh toán</label>
+                        <select class="form-select" id="paymentStatus" name="PaymentStatus">
+                            <option value="Đã thanh toán">Đã thanh toán</option>
+                            <option value="Chưa thanh toán">Chưa thanh toán</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="status" class="form-label">Trạng thái đơn hàng</label>
+                        <select class="form-select" id="status" name="Status">
+                            <option value="Đang chuẩn bị hàng">Đang chuẩn bị hàng</option>
+                            <option value="Đang ship">Đang ship</option>
+                            <option value="Đã giao hàng">Đã giao hàng</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Cập nhật</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        var editModal = document.getElementById('editModal');
+        editModal.addEventListener('show.bs.modal', function (event) {
+            var button = event.relatedTarget; // Nút kích hoạt modal
+            var orderId = button.getAttribute('data-orderId');
+            var userId = button.getAttribute('data-userId');
+            var username = button.getAttribute('data-username');
+            var phone = button.getAttribute('data-phone');
+            var email = button.getAttribute('data-email');
+            var address = button.getAttribute('data-address');
+            var amount = button.getAttribute('data-amount');
+            var paymentStatus = button.getAttribute('data-paymentstatus');
+            var status = button.getAttribute('data-status');
+            var orderDate = button.getAttribute('data-orderDate');
+
+            // Gán dữ liệu vào các trường trong modal
+            editModal.querySelector('#orderId').value = orderId;
+            editModal.querySelector('#userId').value = userId;
+            editModal.querySelector('#userName').value = username;
+            editModal.querySelector('#phone').value = phone;
+            editModal.querySelector('#email').value = email;
+            editModal.querySelector('#shippingAddress').value = address;
+            editModal.querySelector('#totalAmount').value = amount;
+            editModal.querySelector('#paymentStatus').value = paymentStatus;
+            editModal.querySelector('#status').value = status;
+            editModal.querySelector('#orderDate').value = orderDate;
+        });
+    </script>
+}
+<script>
+    // Lưu trữ giá trị đã chọn vào local storage
+    document.getElementById('statusSelect').value = localStorage.getItem('selectedStatus') || '';
+    document.getElementById('paymentStatusSelect').value = localStorage.getItem('selectedPaymentStatus') || '';
+
+    document.getElementById('statusSelect').addEventListener('change', function () {
+        localStorage.setItem('selectedStatus', this.value);
+    });
+
+    document.getElementById('paymentStatusSelect').addEventListener('change', function () {
+        localStorage.setItem('selectedPaymentStatus', this.value);
+    });
+</script>
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

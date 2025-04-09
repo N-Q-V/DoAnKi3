@@ -1,0 +1,57 @@
+﻿@model CallApi.Models.User.Cart
+@{
+    ViewData["Title"] = "ProfileReceipt";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="content">
+    <div class="container">
+        <div class="box">
+            <div class="row-account">
+                <div class="left-container">
+                    <div class="user-infor">
+                        <img src="images/user-img.png" alt="">
+                        <span>@ViewBag.user.FullName</span>
+                    </div>
+                    <div class="side-bar-content">
+                        <ul>
+                            <a asp-action="Profile" asp-controller="RegisterAuth">
+                            <li class="slide-bar active"><i class="fa fa-edit"></i><span>Thông tin tài khoản</span></li></a>
+                            <a asp-action="ProfileReceipt" asp-controller="RegisterAuth">
+                            <li class="slide-bar"><i class="fas fa-money-check"></i><span>Quản lý đơn hàng</span></li></a>
+                        </ul>
+                    </div>
+                </div>
+                <div class="right-container">
+                    <h3 class="title-content">Đơn hàng đã đặt</h3>
+                    <div class="receipt-infor">
+
+                        <table class="table table-hover">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col">Mã đơn hàng</th>
+                                    <th scope="col">Tên khách hàng</th>
+                                    <th scope="col">Ngày đặt hàng</th>
+                                    <th scope="col">Chi tiết đơn hàng</th>
+                                    <th scope="col">Tình trạng đơn hàng</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in @ViewBag.carts)
+                                {
+                                    <tr>
+                                        <th scope="row">@item.OrderId</th>
+                                        <td>@item.UserName</td>
+                                        <td>@item.OrderDate</td>
+                                        <td><a asp-action="ProfileReceiptDetails" asp-controller="RegisterAuth" asp-route-id="@item.OrderId">Xem chi tiết</a></td>
+                                        <td>@item.Status</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- /.features -->
+            </div>
+        </div>
+    </div>
+</div>

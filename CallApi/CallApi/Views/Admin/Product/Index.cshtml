@@ -1,0 +1,149 @@
+﻿@model X.PagedList.IPagedList<CallApi.Models.Admin.Product>
+@using X.PagedList.Mvc.Core;
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style>
+    .container-fluid {
+        overflow: hidden; /* Hoặc overflow: auto; để thêm thanh cuộn */
+    }
+</style>
+<div class="container-fluid mt-4">
+    <!-- Hiển thị thông báo thành công -->
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <!-- Thanh điều hướng thêm sản phẩm và tìm kiếm -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <!-- Form Tìm Kiếm và Lọc Danh Mục -->
+        <form method="get" asp-action="Index" class="w-75 d-flex align-items-end">
+            <div class="me-2 mr-5">
+                <a asp-action="Create" class="btn btn-primary">Thêm mới sản phẩm</a>
+            </div>
+            <!-- Tìm kiếm sản phẩm -->
+            <div class="me-2 mr-1 text-center">
+                <label for="searchProduct" class="form-label">Tìm kiếm sản phẩm</label>
+                <input type="text" id="searchProduct" name="name" class="form-control" value="@ViewBag.name" placeholder="Nhập tên sản phẩm..." />
+            </div>
+
+            <!-- Lọc theo danh mục -->
+            <div class="me-2 mr-1 text-center">
+                <label for="categoryFilter" class="form-label">Lọc theo danh mục</label>
+                <select asp-items="ViewBag.categoryId" name="categoryId" class="form-control" selected="@ViewBag.selectedCatId">
+                    <option value="">Tất cả danh mục</option>
+                </select>
+            </div>
+
+            <!-- Lọc theo trạng thái -->
+            <div class="me-2 mr-1 text-center">
+                <label for="statusFilter" class="form-label">Lọc theo trạng thái</label>
+                <select asp-items="ViewBag.status" name="status" class="form-control" id="statusFilter" selected="@ViewBag.selectedStatus">
+                    <option value="">Tất cả</option>
+                </select>
+            </div>
+
+            <!-- Nút lọc -->
+            <div>
+                <button class="btn btn-primary" type="submit"><i class="fa-solid fa-filter"></i></button>
+            </div>
+        </form>
+    </div>
+
+
+    <!-- Bảng danh sách sản phẩm -->
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover">
+            <thead class="thead-dark text-center">
+                <tr>
+                    <th>Mã sản phẩm</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Giá</th>
+                    <th>Danh mục</th>
+                    <th>Loại sản phẩm</th>
+                    <th>Trạng thái</th>
+                    <th>Ảnh</th>
+                    <th>Màu</th>
+                    <th>Thông số</th>
+                    <th>Ngày tạo</th>
+                    <th>Tác vụ</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="text-center align-middle">
+                        <td>@Html.DisplayFor(modelItem => item.ProductId)</td>
+                        <td>@Html.DisplayFor(modelItem => item.ProductName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                        <td>
+                            @foreach (var c in ViewBag.categories)
+                            {
+                                if (item.CategoryId == c.CategoryId)
+                                {
+                                    <p>@c.CategoryName</p>
+                                }
+                            }
+                        </td>
+                        <td>
+                            @if (item.ProductType)
+                            {
+                                <span class="badge bg-success fs-5">Hàng mới</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-secondary fs-5">Hàng cũ</span>
+                            }
+                        </td>
+                        <td>
+                            @if (item.Status)
+                            {
+                                <span class="badge bg-primary fs-5">Còn hàng</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-warning text-dark fs-5">Hết hàng</span>
+                            }
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-controller="ProductImage" asp-route-id="@item.ProductId" class="btn btn-sm btn-info"><i class="fa-solid fa-info"></i></a>
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-controller="ProductColor" asp-route-id="@item.ProductId" class="btn btn-sm btn-info"><i class="fa-solid fa-info"></i></a>
+                        </td>
+                        <td>
+                            <a asp-action="Detail" asp-route-id="@item.ProductId" class="btn btn-sm btn-info"><i class="fa-solid fa-info"></i></a>
+                        </td>
+                        <td>@Html.DisplayFor(modelItem => item.CreatAt)</td>
+                        <td>
+                            <a asp-action="Delete" asp-route-id="@item.ProductId" class="btn btn-sm btn-danger" onclick="return confirm('Bạn chắc chắn muốn xóa sản phẩm này?');"><i class="fa-solid fa-trash"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="form-inline">
+            @Html.PagedListPager(
+                     Model,
+                     page => Url.Action("Index", "Product", new { page = page, name = ViewBag.name, categoryId = ViewBag.selectedCatId, status = ViewBag.selectedStatus }),
+                     new PagedListRenderOptions
+            {
+                LiElementClasses = new[] { "page-item" },
+                PageClasses = new[] { "page-link" },
+                UlElementClasses = new[] { "pagination" },
+                LinkToPreviousPageFormat = "Previous",
+                LinkToNextPageFormat = "Next",
+                DisplayLinkToPreviousPage = PagedListDisplayMode.IfNeeded,
+                DisplayLinkToNextPage = PagedListDisplayMode.IfNeeded,
+                DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+                DisplayLinkToLastPage = PagedListDisplayMode.Never
+            }
+                     )
+        </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+﻿@model CallApi.Models.ErrorViewModel
+@{
+    ViewData["Title"] = "Error";
+}
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        <h4>Có lỗi xảy ra:</h4>
+        <ul>
+            @foreach (var entry in ViewData.ModelState)
+            {
+                foreach (var error in entry.Value.Errors)
+                {
+                    <li>@error.ErrorMessage</li>
+                }
+            }
+        </ul>
+    </div>
+}
+else
+{
+    <div class="alert alert-warning">
+        <p>Đã xảy ra lỗi không xác định. Vui lòng thử lại sau.</p>
+    </div>
+}
+
+<a href="@Url.Action("Index", "Home")">Quay lại trang chính</a>

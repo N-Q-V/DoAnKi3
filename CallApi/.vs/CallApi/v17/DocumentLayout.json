@@ -1,0 +1,64 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\IT\\C#\\Doan_Ki3_Last\\Doan_Ki3\\CallApi\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E3D8942B-9FC6-4ED9-A826-4E5B868238E2}|CallApi\\CallApi.csproj|e:\\it\\c#\\doan_ki3_last\\doan_ki3\\callapi\\callapi\\controllers\\admin\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E3D8942B-9FC6-4ED9-A826-4E5B868238E2}|CallApi\\CallApi.csproj|solutionrelative:callapi\\controllers\\admin\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E3D8942B-9FC6-4ED9-A826-4E5B868238E2}|CallApi\\CallApi.csproj|e:\\it\\c#\\doan_ki3_last\\doan_ki3\\callapi\\callapi\\views\\shared\\components\\sidebar\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E3D8942B-9FC6-4ED9-A826-4E5B868238E2}|CallApi\\CallApi.csproj|solutionrelative:callapi\\views\\shared\\components\\sidebar\\default.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 143,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ProductController.cs",
+              "DocumentMoniker": "E:\\IT\\C#\\Doan_Ki3_Last\\Doan_Ki3\\CallApi\\CallApi\\Controllers\\Admin\\ProductController.cs",
+              "RelativeDocumentMoniker": "CallApi\\Controllers\\Admin\\ProductController.cs",
+              "ToolTip": "E:\\IT\\C#\\Doan_Ki3_Last\\Doan_Ki3\\CallApi\\CallApi\\Controllers\\Admin\\ProductController.cs",
+              "RelativeToolTip": "CallApi\\Controllers\\Admin\\ProductController.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-08T04:21:42.736Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Default.cshtml",
+              "DocumentMoniker": "E:\\IT\\C#\\Doan_Ki3_Last\\Doan_Ki3\\CallApi\\CallApi\\Views\\Shared\\Components\\Sidebar\\Default.cshtml",
+              "RelativeDocumentMoniker": "CallApi\\Views\\Shared\\Components\\Sidebar\\Default.cshtml",
+              "ToolTip": "E:\\IT\\C#\\Doan_Ki3_Last\\Doan_Ki3\\CallApi\\CallApi\\Views\\Shared\\Components\\Sidebar\\Default.cshtml",
+              "RelativeToolTip": "CallApi\\Views\\Shared\\Components\\Sidebar\\Default.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB0AAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-27T18:22:13.141Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedHeight": 143,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

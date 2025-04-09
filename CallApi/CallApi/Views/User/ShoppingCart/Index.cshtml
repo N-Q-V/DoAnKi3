@@ -1,0 +1,126 @@
+﻿@using CallApi.Models.User
+@model Cart
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- cart-section -->
+<div class="container">
+    <div class="cart-content mt30 mb30">
+        <div class="title-header mb20">
+            <h2 class="title">Giỏ Hàng</h2>
+            <p><span class="text-blue">@Model.Items.Count</span> sản phẩm trong giỏ hàng của bạn</p>
+        </div>
+        <form asp-action="UpdateCart" method="post">
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Sản phẩm</th>
+                        <th scope="col">Đơn giá</th>
+                        <th scope="col">Số lượng</th>
+                        <th scope="col">Thành tiền</th>
+                        <th scope="col"></th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Items.Count == 0)
+                    {
+                        <tr>
+                            <td colspan="6">Your cart is empty.</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        foreach (var item in Model.Items)
+                        {
+                            <tr>
+                                <td>
+                                    <div class="product-title item-center">
+                                        <img src="@ViewBag.domain@item.Image" alt="">
+                                        <div>
+                                            <p>@item.ProductName</p>
+                                            <p>Màu sắc: @item.Color</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="item-center">@item.Price.ToString("C0", new System.Globalization.CultureInfo("vi-VN"))</div>
+                                </td>
+                                <td>
+                                    <div class="item-center">
+                                        <div class="quantity">
+                                            <input class="btn-quantity decrease-quantity" onclick="dcQuantity()" type="button" value="-">
+                                            <input type="number" max="10" min="1" name="quantities[@item.ProductId]" value="@item.Quantity" class="quantity-input" id="quantity-input-@item.ProductId">
+                                            <input class="btn-quantity increase-quantity" onclick="icQuantity()" type="button" value="+">
+                                        </div>
+
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="item-center text-red">@((item.Price * item.Quantity).ToString("C0", new System.Globalization.CultureInfo("vi-VN")))</div>
+                                </td>
+                                <td>
+                                    <div class="item-center pinside10">
+                                        <a href="@Url.Action("RemoveFromCart", "Cart", new { productId = item.ProductId })"
+                                           onclick="return confirm('Bạn chắc chắn muốn xóa không?');">
+                                            <i class="far fa-trash-alt"></i>
+                                        </a>
+                                    </div>
+
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+                <th>
+                    <input type="submit" value="Cập nhật" class="submit-code btn-primary" />
+                </th>
+
+            </table>
+        </form>
+        <div class="prices-summary">
+            <div class="left-content">
+                <a asp-action="Index" asp-controller="UserProduct" class="derection-product text-blue">
+                    <i class="fas fa-long-arrow-alt-left"></i> Tiếp tục
+                    mua hàng
+                </a>
+            </div>
+            <div class="right-con">
+                <div class="total-receipt">
+                    <div class="prices-total pinside20">
+                        <span class="price-text">Tổng cộng</span>
+                        <span class="prices-value prices-final text-red">@Model.TotalPrice().ToString("C0", new System.Globalization.CultureInfo("vi-VN"))</span>
+                    </div>
+                </div>
+                <a asp-action="Checkout" asp-controller="Cart" class="btn-default btn-checkout">Mua Hàng</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function dcQuantity() {
+        // Lấy ID của input từ phần tử đang được nhấp
+        const button = event.target;
+        const input = button.nextElementSibling;
+
+        // Giảm giá trị
+        let currentValue = parseInt(input.value);
+        if (currentValue > parseInt(input.min)) {
+            input.value = currentValue - 1;
+        }
+    }
+
+    function icQuantity() {
+        // Lấy ID của input từ phần tử đang được nhấp
+        const button = event.target;
+        const input = button.previousElementSibling;
+
+        // Tăng giá trị
+        let currentValue = parseInt(input.value);
+        if (currentValue < parseInt(input.max)) {
+            input.value = currentValue + 1;
+        }
+    }
+</script>
+

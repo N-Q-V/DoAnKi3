@@ -1,0 +1,37 @@
+﻿<div class="bg-light border-right" id="sidebar-wrapper">
+    <div class="sidebar-heading text-center font-weight-bold">Mobile Shop</div>
+    <div class="profile text-center mb-4 p-3 bg-light border rounded shadow-sm">
+        <span class="h5 text-primary">Xin chào, <strong>@ViewBag.Username</strong>!</span>
+    </div>
+
+    @functions {
+        // Phương thức để kiểm tra trang hiện tại
+        public bool IsActive(string controller, string action)
+        {
+            var currentController = ViewContext.RouteData.Values["controller"] as string;
+            var currentAction = ViewContext.RouteData.Values["action"] as string;
+
+            return currentController.Equals(controller, StringComparison.OrdinalIgnoreCase) &&
+            currentAction.Equals(action, StringComparison.OrdinalIgnoreCase);
+        }
+    }
+
+    <div class="list-group list-group-flush">
+        <a asp-action="Index" asp-controller="Category" class="list-group-item list-group-item-action @(IsActive("Category", "Index") ? "active" : "")">
+            <i class="menu-icon fas fa-mobile-alt font-list"></i>
+            Thông tin danh mục
+        </a>
+        <a asp-action="Index" asp-controller="Product" class="list-group-item list-group-item-action @(IsActive("Product", "Index") ? "active" : "")">
+            <i class="menu-icon fas fa-mobile-alt font-list"></i>
+            Thông tin sản phẩm
+        </a>
+        <a asp-action="Index" asp-controller="Order" class="list-group-item list-group-item-action @(IsActive("Order", "Index") ? "active" : "")">
+            <i class="menu-icon fas fa-shopping-cart font-list"></i>
+            Quản lí đơn hàng
+        </a>
+        <a asp-action="Index" asp-controller="Users" class="list-group-item list-group-item-action @(IsActive("User", "Index") ? "active" : "")">
+            <i class="menu-icon fas fa-users font-list"></i>
+            Thông tin người dùng
+        </a>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+﻿@{
+    ViewData["Title"] = "Success";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="text-center">
+        <h1 class="display-4 text-success">Cảm ơn bạn đã đặt hàng!</h1>
+        <p class="lead">Đơn hàng của bạn đã được xác nhận và chúng tôi sẽ xử lý ngay.</p>
+        <a href="@Url.Action("Index", "User")" class="btn btn-primary">Quay lại trang chính</a>
+    </div>
+</div>

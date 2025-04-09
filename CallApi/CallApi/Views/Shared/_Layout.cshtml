@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<!-- Mirrored from easetemplate.com/free-website-templates/mobistore/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Nov 2021 09:40:15 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="create ecommerce website template for your online store, responsive mobile templates">
+    <meta name="keywords" content="ecommerce website templates, online store,">
+    <title>Nhom 5 anh em C2303LM</title>
+    <!-- fontawesome -->
+    <link href="/Admin/fontawesome/css/fontawesome.css" rel="stylesheet" />
+    <link href="/Admin/fontawesome/css/brands.css" rel="stylesheet" />
+    <link href="/Admin/fontawesome/css/solid.css" rel="stylesheet" />
+    <!-- Bootstrapppppp -->
+    <link href="/User/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/Home/fonts/fontawesome-free-5.15.4-web/css/all.min.css">
+    <!-- Style CSS -->
+    <link href="/User/css/style.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i" rel="stylesheet">
+    <!-- owl-carousel -->
+    <link href="/User/css/owl.carousel.css" rel="stylesheet">
+    <link href="/User/css/owl.theme.default.css" rel="stylesheet">
+    <!-- FontAwesome CSS -->
+    <link href="/User/css/font-awesome.min.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <!-- header -->
+    @await Component.InvokeAsync("Header")
+    <!-- /.header -->
+    <!-- mobile Product -->
+    @RenderBody()
+    <!-- /.mobile Product -->
+    <!-- footer -->
+    @await Component.InvokeAsync("Footer")
+    <!-- /.footer -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="/User/js/jquery.min.js" type="text/javascript"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/User/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="/User/js/menumaker.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/User/js/jquery.sticky.js"></script>
+    <script type="text/javascript" src="/User/js/sticky-header.js"></script>
+    <script type="text/javascript" src="/User/js/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="/User/js/multiple-carousel.js"></script>
+    <script type="text/javascript">
+        (function ($) {
+            $(document).ready(function () {
+                $('#cssmenu ul ul li:odd').addClass('odd');
+                $('#cssmenu ul ul li:even').addClass('even');
+                $('#cssmenu > ul > li > a').click(function () {
+                    $('#cssmenu li').removeClass('active');
+                    $(this).closest('li').addClass('active');
+                    var checkElement = $(this).next();
+                    if ((checkElement.is('ul')) && (checkElement.is(':visible'))) {
+                        $(this).closest('li').removeClass('active');
+                        checkElement.slideUp('normal');
+                    }
+                    if ((checkElement.is('ul')) && (!checkElement.is(':visible'))) {
+                        $('#cssmenu ul ul:visible').slideUp('normal');
+                        checkElement.slideDown('normal');
+                    }
+                    if ($(this).closest('li').find('ul').children().length == 0) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                });
+            });
+        })(jQuery);
+    </script>
+</body>
+<!-- Mirrored from easetemplate.com/free-website-templates/mobistore/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 19 Nov 2021 09:40:40 GMT -->
+</html>

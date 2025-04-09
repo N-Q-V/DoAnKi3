@@ -1,0 +1,119 @@
+﻿@model CallApi.Models.Admin.Product
+
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container my-4">
+    <div class="card border border-0 rounded shadow-lg bg-white">
+        <div class="card-header bg-primary text-white">
+            <h4 class="card-title mb-0">Chi tiết sản phẩm</h4>
+        </div>
+        <div class="card-body">
+            <dl class="row border-top border-bottom">
+                <dt class="col-sm-3 font-weight-bold text-secondary border-end">
+                    @Html.DisplayNameFor(model => model.ProductId)
+                </dt>
+                <dd class="col-sm-9 border-end">
+                    @Html.DisplayFor(model => model.ProductId)
+                </dd>
+
+                <dt class="col-sm-3 font-weight-bold text-secondary border-end">
+                    @Html.DisplayNameFor(model => model.ProductName)
+                </dt>
+                <dd class="col-sm-9 border-end">
+                    @Html.DisplayFor(model => model.ProductName)
+                </dd>
+
+                <dt class="col-sm-3 font-weight-bold text-secondary border-end">
+                    @Html.DisplayNameFor(model => model.Price)
+                </dt>
+                <dd class="col-sm-9 border-end">
+                    @Html.DisplayFor(model => model.Price)
+                </dd>
+
+                <dt class="col-sm-3 font-weight-bold text-secondary border-end">
+                    @Html.DisplayNameFor(model => model.CategoryId)
+                </dt>
+                <dd class="col-sm-9 border-end">
+                    @Html.DisplayFor(model => model.CategoryId)
+                </dd>
+
+                <dt class="col-sm-3 font-weight-bold text-secondary border-end">
+                    @Html.DisplayNameFor(model => model.ProductType)
+                </dt>
+                <dd class="col-sm-9 border-end">
+                    @(Model.ProductType ? "Hàng mới" : "Hàng cũ")
+                </dd>
+
+                <dt class="col-sm-3 font-weight-bold text-secondary border-end">
+                    @Html.DisplayNameFor(model => model.Status)
+                </dt>
+                <dd class="col-sm-9 border-end">
+                    @(Model.Status ? "Còn hàng" : "Hết hàng")
+                </dd>
+
+                <dt class="col-sm-3 font-weight-bold text-secondary border-end">
+                    @Html.DisplayNameFor(model => model.Display)
+                </dt>
+                <dd class="col-sm-9 border-end">
+                    @Html.DisplayFor(model => model.Display)
+                </dd>
+
+                <dt class="col-sm-3 font-weight-bold text-secondary border-end">
+                    @Html.DisplayNameFor(model => model.FrontCamera)
+                </dt>
+                <dd class="col-sm-9 border-end">
+                    @Html.DisplayFor(model => model.FrontCamera)
+                </dd>
+
+                <dt class="col-sm-3 font-weight-bold text-secondary border-end">
+                    @Html.DisplayNameFor(model => model.RearCamera)
+                </dt>
+                <dd class="col-sm-9 border-end">
+                    @Html.DisplayFor(model => model.RearCamera)
+                </dd>
+
+                <dt class="col-sm-3 font-weight-bold text-secondary border-end">
+                    @Html.DisplayNameFor(model => model.Cpu)
+                </dt>
+                <dd class="col-sm-9 border-end">
+                    @Html.DisplayFor(model => model.Cpu)
+                </dd>
+
+                <dt class="col-sm-3 font-weight-bold text-secondary border-end">
+                    @Html.DisplayNameFor(model => model.System)
+                </dt>
+                <dd class="col-sm-9 border-end">
+                    @Html.DisplayFor(model => model.System)
+                </dd>
+
+                <dt class="col-sm-3 font-weight-bold text-secondary border-end">
+                    @Html.DisplayNameFor(model => model.ConnectType)
+                </dt>
+                <dd class="col-sm-9 border-end">
+                    @Html.DisplayFor(model => model.ConnectType)
+                </dd>
+
+                <dt class="col-sm-3 font-weight-bold text-secondary border-end">
+                    @Html.DisplayNameFor(model => model.Memory)
+                </dt>
+                <dd class="col-sm-9 border-end">
+                    @Html.DisplayFor(model => model.Memory)
+                </dd>
+
+                <dt class="col-sm-3 font-weight-bold text-secondary border-end">
+                    @Html.DisplayNameFor(model => model.CreatAt)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.CreatAt)
+                </dd>
+            </dl>
+        </div>
+        <div class="card-footer d-flex justify-content-end">
+            @Html.ActionLink("Sửa", "Edit", new { id = Model.ProductId }, new { @class = "btn btn-warning me-2" })
+            <a asp-action="Index" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Quay lại danh sách</a>
+        </div>
+    </div>
+</div>

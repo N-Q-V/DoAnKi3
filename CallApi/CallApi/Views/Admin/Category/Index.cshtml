@@ -1,0 +1,68 @@
+﻿@model IEnumerable<CallApi.Models.Admin.Category>
+
+@{
+    ViewData["Title"] = "Category Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style>
+    .container-fluid {
+        overflow: hidden; /* Hoặc overflow: auto; để thêm thanh cuộn */
+    }
+</style>
+<div class="container mt-4">
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <p>
+        <a class="btn btn-primary" asp-action="Create">Thêm mới danh mục</a>
+    </p>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr class="text-center">
+                    <th>@Html.DisplayNameFor(model => model.CategoryId)</th>
+                    <th>@Html.DisplayNameFor(model => model.CategoryName)</th>
+                    <th>@Html.DisplayNameFor(model => model.Status)</th>
+                    <th>@Html.DisplayNameFor(model => model.Image)</th>
+                    <th>@Html.DisplayNameFor(model => model.Logo)</th>
+                    <th>@Html.DisplayNameFor(model => model.CreatDate)</th>
+                    <th>Tác vụ</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.CategoryId)</td>
+                        <td>@Html.DisplayFor(modelItem => item.CategoryName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                        <td>
+                            <img src="@ViewBag.domain@item.Image" alt="Image" class="img-thumbnail" style="max-width: 50px; max-height: 50px;">
+                        </td>
+                        <td>
+                            <img src="@ViewBag.domain@item.Logo" alt="Logo" class="img-thumbnail" style="max-width: 50px; max-height: 50px;">
+                        </td>
+                        <td>@Html.DisplayFor(modelItem => item.CreatDate)</td>
+                        <td>
+                            <a class="btn btn-warning btn-sm" asp-action="Edit" asp-route-id="@item.CategoryId">Sửa</a>
+                            <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.CategoryId" onclick="return confirm('Bạn chắc chắn muốn xóa danh mục này?');">Xóa</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

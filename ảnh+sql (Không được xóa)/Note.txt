@@ -1,0 +1,1 @@
+Chạy file sql rồi coppy thư mục category và product vào trong wwwwroot/images để hiển thị được ảnh

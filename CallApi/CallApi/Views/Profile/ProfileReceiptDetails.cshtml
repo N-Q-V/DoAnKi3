@@ -1,0 +1,106 @@
+﻿@model IEnumerable<CallApi.Models.User.CartItem>
+@{
+    ViewData["Title"] = "ProfileReceiptDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="content">
+    <div class="container">
+        <div class="box">
+            <div class="row-account">
+                <div class="left-container">
+                    <div class="user-infor">
+                        <img src="images/user-img.png" alt="">
+                        <span>@ViewBag.user.FullName</span>
+                    </div>
+                    <div class="side-bar-content">
+                        <ul>
+                            <a asp-action="Profile" asp-controller="RegisterAuth">
+                            <li class="slide-bar active"><i class="fa fa-edit"></i><span>Thông tin tài khoản</span></li></a>
+                            <a asp-action="ProfileReceipt" asp-controller="RegisterAuth">
+                            <li class="slide-bar"><i class="fas fa-money-check"></i><span>Quản lý đơn hàng</span></li></a>
+                        </ul>
+                    </div>
+                </div>
+                <div class="right-container">
+                    <h3 class="title-content">Đơn hàng đã đặt/ Chi tiết đơn hàng</h3>
+                    <div class="receipt-infor-details">
+                        <div class="title-receipt">
+                            <div class="left-content content">
+                                <h4>ĐƠN HÀNG</h4>
+                                <p class="receipt-id">Mã đơn hàng: @ViewBag.order.OrderId</p>
+                                <p class="receipt-time">@ViewBag.order.OrderDate</p>
+                            </div>
+                            <p></p>
+                            <div class="right-content content">
+                                <h4>THÔNG TIN NHẬN HÀNG</h4>
+                                <p><strong>@ViewBag.order.UserName</strong> - @ViewBag.order.Phone</p>
+                                <p class="address">
+                                    @ViewBag.order.ShippingAddress
+                                </p>
+                            </div>
+                        </div>
+                        <table class="table">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>Sản phẩm</th>
+                                    <th scope="col">Đơn giá</th>
+                                    <th scope="col">Số lượng</th>
+                                    <th scope="col">Thành tiền</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in ViewBag.orderItems)
+                                {
+                                    <tr>
+                                        <td>
+                                            <div class="product-title">
+                                                @foreach (var i in ViewBag.productImage)
+                                                {
+                                                    @if (item.ProductId == i.ProductId)
+                                                    {
+                                                        <img src="@ViewBag.domain@i.Thumb" alt="">
+                                                    }
+                                                }
+                                                <div>
+                                                    <p>@item.ProductName</p>
+                                                    <p>Màu sắc: @item.Color</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><div class="item-center">@item.Price.ToString("N0") VNĐ</div></td>
+                                        <td><div class="item-center">@item.Quantity</div></td>
+                                        <td>
+                                            <div class="item-center">
+                                                @(string.Format("{0:N0} VNĐ", item.Price * item.Quantity))
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+
+                            <tfoot>
+                                <tr>
+                                    <td scope="row"></td>
+                                    <td></td>
+                                    <td scope="row">
+                                        <div>
+                                            <p>Tổng thanh toán:</p>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <p>@ViewBag.order.TotalAmount.ToString("N0") VNĐ</p>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            </tfoot>
+                        </table>
+                        <a asp-action="ProfileReceipt" asp-controller="RegisterAuth" class="redirect-to-receipt text-blue"><i class="fas fa-long-arrow-alt-left"></i> Danh sách đơn hàng</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,60 @@
+﻿@model CallApi.Models.Authen.UpdateUserViewModel
+@{
+    ViewData["Title"] = "Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content">
+    <div class="container">
+        <div class="box">
+            <div class="row-account">
+                <div class="left-container">
+                    <div class="user-infor">
+                        <img src="images/user-img.png" alt="">
+                        <span>@Model.FullName</span>
+                    </div>
+                    <div class="side-bar-content">
+                        <ul>
+                            <a asp-action="Profile" asp-controller="RegisterAuth">
+                            <li class="slide-bar active"><i class="fa fa-edit"></i><span>Thông tin tài khoản</span></li></a>
+                            <a asp-action="ProfileReceipt" asp-controller="RegisterAuth">
+                            <li class="slide-bar"><i class="fas fa-money-check"></i><span>Quản lý đơn hàng</span></li></a>
+                        </ul>
+                    </div>
+                </div>
+                <div class="right-container">
+                    <h3 class="title-content">Thông tin tài khoản</h3>
+                    <div class="account-infor">
+                        @if (TempData["SuccessMessage"] != null)
+                        {
+                            <div class="alert alert-success">
+                                @TempData["SuccessMessage"]
+                            </div>
+                        }
+                        <form asp-action="UpdateUser" asp-controller="RegisterAuth">
+                            <div class="form-control">
+                                <label asp-for="FullName" class="input-label"></label>
+                                <input type="text" placeholder="Thêm họ tên" class="input-field" asp-for="FullName">
+                                <input type="hidden" asp-for="UserId" />
+                            </div>
+                            <div class="form-control">
+                                <label asp-for="Email" class="input-label"></label>
+                                <input type="email" placeholder="Thêm email" class="input-field" asp-for="Email" readonly>
+                            </div>
+                            <div class="form-control">
+                                <label asp-for="Phonenumber" class="input-label"></label>
+                                <input type="phone" placeholder="Thêm số điện thoại" class="input-field" asp-for="Phonenumber">
+                            </div>
+                            <div class="form-control">
+                                <label asp-for="Adress" class="input-label"></label>
+                                <input type="phone" placeholder="Địa chỉ" class="input-field" asp-for="Adress">
+                            </div>
+                            <button class="btn-update">Cập nhật</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- /.features -->
+            </div>
+        </div>
+    </div>
+</div>

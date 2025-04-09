@@ -1,0 +1,81 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\IT\\C#\\Doan_Ki3_Last\\Doan_Ki3\\WebApplication1\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{9D25B9CC-1DA4-4EE6-A723-097FCE72C43F}|WebApplication1\\WebApplication1.csproj|e:\\it\\c#\\doan_ki3_last\\doan_ki3\\webapplication1\\webapplication1\\controllers\\admin\\categoriescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D25B9CC-1DA4-4EE6-A723-097FCE72C43F}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\controllers\\admin\\categoriescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D25B9CC-1DA4-4EE6-A723-097FCE72C43F}|WebApplication1\\WebApplication1.csproj|e:\\it\\c#\\doan_ki3_last\\doan_ki3\\webapplication1\\webapplication1\\migrations\\20240927181827_v1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D25B9CC-1DA4-4EE6-A723-097FCE72C43F}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\migrations\\20240927181827_v1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9D25B9CC-1DA4-4EE6-A723-097FCE72C43F}|WebApplication1\\WebApplication1.csproj|e:\\it\\c#\\doan_ki3_last\\doan_ki3\\webapplication1\\webapplication1\\migrations\\mobiledbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9D25B9CC-1DA4-4EE6-A723-097FCE72C43F}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\migrations\\mobiledbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 676,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CategoriesController.cs",
+              "DocumentMoniker": "E:\\IT\\C#\\Doan_Ki3_Last\\Doan_Ki3\\WebApplication1\\WebApplication1\\Controllers\\Admin\\CategoriesController.cs",
+              "RelativeDocumentMoniker": "WebApplication1\\Controllers\\Admin\\CategoriesController.cs",
+              "ToolTip": "E:\\IT\\C#\\Doan_Ki3_Last\\Doan_Ki3\\WebApplication1\\WebApplication1\\Controllers\\Admin\\CategoriesController.cs",
+              "RelativeToolTip": "WebApplication1\\Controllers\\Admin\\CategoriesController.cs",
+              "ViewState": "AQIAABYAAAAAAAAAAAAgwBUAAAAfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-08T04:19:40.901Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MobileDbContextModelSnapshot.cs",
+              "DocumentMoniker": "E:\\IT\\C#\\Doan_Ki3_Last\\Doan_Ki3\\WebApplication1\\WebApplication1\\Migrations\\MobileDbContextModelSnapshot.cs",
+              "RelativeDocumentMoniker": "WebApplication1\\Migrations\\MobileDbContextModelSnapshot.cs",
+              "ToolTip": "E:\\IT\\C#\\Doan_Ki3_Last\\Doan_Ki3\\WebApplication1\\WebApplication1\\Migrations\\MobileDbContextModelSnapshot.cs",
+              "RelativeToolTip": "WebApplication1\\Migrations\\MobileDbContextModelSnapshot.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-08T04:17:30.583Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "20240927181827_v1.cs",
+              "DocumentMoniker": "E:\\IT\\C#\\Doan_Ki3_Last\\Doan_Ki3\\WebApplication1\\WebApplication1\\Migrations\\20240927181827_v1.cs",
+              "RelativeDocumentMoniker": "WebApplication1\\Migrations\\20240927181827_v1.cs",
+              "ToolTip": "E:\\IT\\C#\\Doan_Ki3_Last\\Doan_Ki3\\WebApplication1\\WebApplication1\\Migrations\\20240927181827_v1.cs",
+              "RelativeToolTip": "WebApplication1\\Migrations\\20240927181827_v1.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-27T18:18:27.761Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 676,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+﻿@model IEnumerable<CallApi.Models.Authen.Users>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    .container-fluid {
+        overflow: hidden; /* Hoặc overflow: auto; để thêm thanh cuộn */
+    }
+</style>
+<div class="container-fluid mt-4">
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover">
+            <thead class="thead-dark text-center">
+                <tr>
+                    <th>Mã Người dùng</th>
+                    <th>Tên Người dùng</th>
+                    <th>Email</th>
+                    <th>Số Điện Thoại</th>
+                    <th>Địa chỉ</th>
+                    <th>Ngày tạo</th>
+                    <th>Tác vụ</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    if (item.Username != "Guest" && item.Username != "admin")
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FullName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Phonenumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Adress)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CreatedAt)
+                            </td>
+                            <td>
+                                <a asp-action="Delete" asp-route-id="@item.UserId" class="btn btn-sm btn-danger" onclick="return confirm('Bạn chắc chắn muốn xóa người dùng này?');"><i class="fa-solid fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

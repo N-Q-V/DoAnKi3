@@ -1,0 +1,175 @@
+﻿@model CallApi.Models.Admin.ViewModel.ProductViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="container mt-4 border border-0 rounded shadow-lg bg-white">
+    <h1 class="text-center">Sửa sản phẩm</h1>
+    <hr />
+    <form asp-action="Edit" method="post" asp-controller="Product" enctype="multipart/form-data" class="p-3">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="row">
+            <div class="col-6 space-top">
+                <h5 class="spacing_form">Mã sản phẩm</h5>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fas fa-mobile-alt"></i></div>
+                    </div>
+                    <input asp-for="ProductId" readonly class="form-control" placeholder="Nhập mã sản phẩm" />
+                    <span asp-validation-for="ProductId" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-6 space-top">
+                <h5 class="spacing_form">Tên sản phẩm</h5>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fas fa-mobile-alt"></i></div>
+                    </div>
+                    <input asp-for="ProductName" class="form-control" placeholder="Nhập tên sản phẩm" />
+                    <span asp-validation-for="ProductName" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6 space-top">
+                <h5 class="spacing_form">Tên Thương hiệu</h5>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fas fa-mobile-alt"></i></div>
+                    </div>
+                    <select asp-for="CategoryId" asp-items="@ViewBag.CategoryId" class="form-control"></select>
+                </div>
+            </div>
+            <div class="col-6 space-top">
+                <h5 class="spacing_form">Giá bán(VND)</h5>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fas fa-dollar-sign"></i></div>
+                    </div>
+                    <input asp-for="Price" class="form-control" placeholder="Nhập giá bán" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 space-top">
+                <h5 class="spacing_form">Loại sản phẩm</h5>
+                <select asp-for="ProductType" class="form-control w" id="exampleFormControlSelect1">
+                    <option value="true">Mới</option>
+                    <option value="false">Cũ</option>
+                </select>
+            </div>
+            <div class="col-sm-6 space-top">
+                <h5 class="spacing_form ">Trình trạng</h5>
+                <select asp-for="Status" class="form-control w" id="exampleFormControlSelect1">
+                    <option value="true">Còn hàng</option>
+                    <option value="false">Hết hàng</option>
+                </select>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-6 space-top">
+                <h5 class="spacing_form">Màn hình</h5>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fas fa-mobile-alt"></i></div>
+                    </div>
+                    <input asp-for="Display" class="form-control" placeholder="Nhập thông số màn hình" />
+                    <span asp-validation-for="Display" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-6 space-top">
+                <h5 class="spacing_form">Hệ điều hành</h5>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fas fa-cogs"></i></div>
+                    </div>
+                    <input asp-for="System" class="form-control" placeholder="Nhập tên hệ điều hành" />
+                    <span asp-validation-for="System" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6 space-top">
+                <h5 class="spacing_form">Camera sau</h5>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fas fa-camera"></i></div>
+                    </div>
+                    <input asp-for="RearCamera" class="form-control" placeholder="Nhập thông số camera sau" />
+                    <span asp-validation-for="RearCamera" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-6 space-top">
+                <h5 class="spacing_form">Camera trước</h5>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fas fa-camera"></i></div>
+                    </div>
+                    <input asp-for="FrontCamera" class="form-control" placeholder="Nhập thông số camera trước" />
+                    <span asp-validation-for="FrontCamera" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6 space-top">
+                <h5 class="spacing_form">CPU</h5>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fas fa-hdd"></i></div>
+                    </div>
+                    <input asp-for="Cpu" class="form-control" placeholder="Nhập thông số CPU" />
+                    <span asp-validation-for="Cpu" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-6 space-top">
+                <h5 class="spacing_form">Bộ nhớ</h5>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fas fa-sd-card"></i></div>
+                    </div>
+                    <input asp-for="Memory" class="form-control" placeholder="Nhập thông số bộ nhớ" />
+                    <span asp-validation-for="Memory" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6 space-top">
+                <h5 class="spacing_form">Kết nối</h5>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="fas fa-wifi"></i></div>
+                    </div>
+                    <input asp-for="ConnectType" class="form-control" placeholder="Nhập loại kết nối" />
+                    <span asp-validation-for="ConnectType" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-6 space-top">
+                <h5 class="spacing_form">Ngày ra mắt</h5>
+                <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
+                    </div>
+                    <input asp-for="CreatAt" class="form-control" placeholder="Nhập ngày ra mắt" />
+                    <span asp-validation-for="CreatAt" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="mb-3 d-flex justify-content-between">
+            <button type="submit" class="btn btn-primary">Cập nhật</button>
+            <a asp-action="Index" class="btn btn-secondary ms-auto"><i class="fas fa-arrow-left"></i> Quay lại danh sách</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

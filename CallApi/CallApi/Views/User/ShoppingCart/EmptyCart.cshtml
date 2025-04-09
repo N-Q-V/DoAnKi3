@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewData["Title"] = "EmptyCart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    ViewData["Title"] = "Giỏ hàng rỗng";
+}
+
+
+<div class="container mt-5">
+    <div class="text-center">
+        <h2>@ViewBag.Message</h2>
+        <p>Hãy xem qua sản phẩm của chúng tôi để thêm vào giỏ hàng.</p>
+        <a href="@Url.Action("Index", "UserProduct")" class="btn btn-primary">Mua sắm ngay</a>
+    </div>
+</div>
+
