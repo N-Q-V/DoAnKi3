@@ -33,12 +33,12 @@ Một website bán giày được xây dựng hoàn chỉnh với Spring Boot v�
 
 ## 🚀 Hướng dẫn chạy dự án
 ### 1. Clone project
-git clone https://github.com/N-Q-V/DoAnJavaSpringBoot.git
-cd DoAnJavaSpringBoot
+- git clone https://github.com/N-Q-V/DoAnJavaSpringBoot.git
+- cd DoAnJavaSpringBoot
 ### 2. Cấu hình database
-Tạo database tên fashion_spring
-Cấu hình username = spring, password = spring
-Chạy file Query
+- Tạo database tên fashion_spring
+- Cấu hình username = spring, password = spring
+- Chạy file Query
 ### 3. Chạy project
-Mở bằng IntelliJ
-Chạy FashionSpringBootApplication.java (hàm main)
+- Mở bằng IntelliJ
+- Chạy FashionSpringBootApplication.java (hàm main)
