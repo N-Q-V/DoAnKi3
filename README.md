@@ -32,9 +32,7 @@ Một website bán giày được xây dựng hoàn chỉnh với Spring Boot v�
 ---
 
 ## 🚀 Hướng dẫn chạy dự án
-
 ### 1. Clone project
-```bash
 git clone https://github.com/N-Q-V/DoAnJavaSpringBoot.git
 cd DoAnJavaSpringBoot
 ### 2. Cấu hình database
